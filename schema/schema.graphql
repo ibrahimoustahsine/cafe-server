@@ -1,0 +1,33 @@
+type Restaurant {
+  id: Int!
+  name: String!
+  email: String!
+  menus(onlyActive: Boolean!): [FoodMenu]!
+}
+
+type MenuItem {
+  id: Int!
+  name: String!
+  price: Float!
+  description: String!
+}
+
+type MenuCategory {
+  id: Int!
+  name: String!
+  icon: Int!
+  item_count: Int!
+  menu_items: [MenuItem]!
+}
+
+#customer default menu
+type FoodMenu {
+  id: Int!
+  active: Boolean!
+  categories: [MenuCategory]!
+}
+
+type Query {
+  restaurant(id: Int): Restaurant!
+  restaurants: [Restaurant]!
+}
