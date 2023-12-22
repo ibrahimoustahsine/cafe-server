@@ -27,7 +27,27 @@ type FoodMenu {
   categories: [MenuCategory]!
 }
 
+type Order {
+  order_id: Int!
+  order_date: String!
+  total_price: Float!
+  customer_name: String!
+  status: String!
+}
+
 type Query {
   restaurant(id: Int): Restaurant!
   restaurants: [Restaurant]!
+  orders: [Order]!
+}
+
+type Mutation {
+  place_order(
+    customer_id: Int!
+    price: Float!
+    restaurant_id: Int!
+    items: [[Int!]!]!
+  ): Order!
+  finish_order(id: Int!): Order!
+  cancel_order(id: Int!): Order!
 }
